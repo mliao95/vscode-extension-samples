@@ -4,6 +4,12 @@
 	"description": "How to contribute and use configurations in VS Code",
 	"version": "0.0.1",
 	"publisher": "vscode-samples",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -22,7 +28,51 @@
 	"contributes": {
 		"configuration": [
 			{
+				"title": "Settings Editor Widget Samples",
+				"order": 2,
+				"properties": {
+					"conf.settingsEditor.boolObjectSetting": {
+						"type": "object",
+						"description": "An example bool object setting.",
+						"properties": {
+							"prop1": {
+								"type": "boolean",
+								"description": "Property 1"
+							},
+							"prop2": {
+								"type": "boolean",
+								"description": "Property 2"
+							}
+						},
+						"additionalProperties": false,
+						"default": {
+							"prop1": true,
+							"prop2": false
+						}
+					},
+					"conf.settingsEditor.uniqueEnumArraySetting": {
+						"type": "array",
+						"description": "An example enum array setting.",
+						"items": {
+							"type": "string",
+							"enum": [
+								"red",
+								"yellow",
+								"blue"
+							]
+						},
+						"uniqueItems": true
+					},
+					"conf.settingsEditor.multilineSetting": {
+						"type": "string",
+						"description": "An example multiline setting.",
+						"editPresentation": "multilineText"
+					}
+				}
+			},
+			{
 				"title": "Configuration Samples",
+				"order": 1,
 				"properties": {
 					"conf.view.showOnWindowOpen": {
 						"type": "string",
@@ -87,6 +137,6 @@
 		"@typescript-eslint/eslint-plugin": "^4.16.0",
 		"@typescript-eslint/parser": "^4.16.0",
 		"eslint": "^7.21.0",
-		"typescript": "^4.2.2"
+		"typescript": "^4.4.3"
 	}
 }
