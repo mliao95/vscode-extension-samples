@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+
+		<!--
+			Use a content security policy to only allow loading images from https or from our extension directory,
+			and only allow scripts that have a specific nonce.
+		-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="D:\vscode-extension-samples\webview-sample\media\reset.css" rel="stylesheet">
+		<link href="D:\vscode-extension-samples\webview-sample\media\vscode.css" rel="stylesheet">
+
+		<title>Cat Coding</title>
+	</head>
+	<body id="testBody">
+		<input title="test" label="test" type="text" id="fname" name="fname" value=""><br>
+		<img title="cat" id="testImage" tabindex=0 src="D:\vscode-extension-samples\webview-sample\media\cat.gif" width="300" />
+		<h1 id="lines-of-code-counter">0</h1>
+		<script nonce="${nonce}" src="D:\vscode-extension-samples\webview-sample\media\main.js"></script>
+	</body>
+</html>

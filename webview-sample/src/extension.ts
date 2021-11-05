@@ -202,10 +202,10 @@ class CatCodingPanel {
 
 				<title>Cat Coding</title>
 			</head>
-			<body>
-				<img src="${catGifPath}" width="300" />
+			<body id="testBody">
+				<input type="text" id="fname" name="fname" value=""><br>
+				<img id="testImage" tabindex=0 src="${catGifPath}" width="300" />
 				<h1 id="lines-of-code-counter">0</h1>
-
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;

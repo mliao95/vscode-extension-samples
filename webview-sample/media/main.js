@@ -2,29 +2,18 @@
 // It cannot access the main VS Code APIs directly.
 
 (function () {
-    const vscode = acquireVsCodeApi();
-
-    const oldState = /** @type {{ count: number} | undefined} */ (vscode.getState());
-
     const counter = /** @type {HTMLElement} */ (document.getElementById('lines-of-code-counter'));
-    console.log('Initial state', oldState);
 
-    let currentCount = (oldState && oldState.count) || 0;
+    let currentCount = 0;
     counter.textContent = `${currentCount}`;
 
     setInterval(() => {
         counter.textContent = `${currentCount++} `;
 
         // Update state
-        vscode.setState({ count: currentCount });
 
         // Alert the extension when the cat introduces a bug
         if (Math.random() < Math.min(0.001 * currentCount, 0.05)) {
-            // Send a message back to the extension
-            vscode.postMessage({
-                command: 'alert',
-                text: '🐛  on line ' + currentCount
-            });
         }
     }, 100);
 
@@ -38,4 +27,27 @@
                 break;
         }
     });
+
+    const imageElement = document.getElementById('testImage');
+    if (imageElement) {
+        for (const eventName of ['keydown', 'keyup', 'keypress']) {
+            imageElement.addEventListener(eventName, event => {
+                // @ts-ignore
+                let keyboardEvent = event;
+                switch (keyboardEvent.type) {
+                    case 'keydown':
+                      if (keyboardEvent instanceof KeyboardEvent && keyboardEvent.ctrlKey) {
+                          keyboardEvent.preventDefault();
+                      }
+                      break;
+                    case 'keyup':
+                      break;
+                    case 'keypress':
+                      break;
+                    default:
+                      return;
+                }
+            });
+        }
+    }
 }());
